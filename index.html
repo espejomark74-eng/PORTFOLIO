@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Developer Portfolio</title>
+    <style>
+        /* ===================================
+           Reset & Root Variables
+           =================================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-main: #0a0a0a;       /* Dark Black background */
+            --bg-card: #141414;       /* Slightly lighter black for cards */
+            --accent-color: #00f0ff;  /* Cyan accent color */
+            --accent-hover: #00b3cc;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0a0;
+            --border-color: #222222;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-main);
+            color: var(--text-primary);
+        }
+
+        body {
+            line-height: 1.6;
+        }
+
+        /* ===================================
+           Header / Navbar
+           =================================== */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: rgba(10, 10, 10, 0.9);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+            z-index: 1000;
+        }
+
+        .navbar {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.2rem 2rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--accent-color);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-color);
+        }
+
+        /* ===================================
+           Sections General Styling
+           =================================== */
+        section {
+            padding: 6rem 2rem 3rem 2rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        h2 {
+            font-size: 2.2rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        h2::after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 3px;
+            background: var(--accent-color);
+            margin: 0.5rem auto 0 auto;
+            border-radius: 2px;
+        }
+
+        /* ===================================
+           Hero Section
+           =================================== */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero-content h2 {
+            font-size: 1.8rem;
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            font-weight: 400;
+        }
+
+        .hero-content h2::after {
+            display: none;
+        }
+
+        .hero-content p {
+            max-width: 600px;
+            margin: 0 auto 2rem auto;
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+        }
+
+        .highlight {
+            color: var(--accent-color);
+        }
+
+        /* Buttons */
+        .btn-group {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 1.8rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s ease, border-color 0.3s ease;
+        }
+
+        .primary-btn {
+            background-color: var(--accent-color);
+            color: #000;
+            border: 2px solid var(--accent-color);
+        }
+
+        .primary-btn:hover {
+            background-color: var(--accent-hover);
+            border-color: var(--accent-hover);
+        }
+
+        .secondary-btn {
+            background-color: transparent;
+            color: var(--text-primary);
+            border: 2px solid var(--border-color);
+        }
+
+        .secondary-btn:hover {
+            border-color: var(--accent-color);
+            color: var(--accent-color);
+        }
+
+        /* ===================================
+           Profile Section
+           =================================== */
+        .profile-section {
+            padding-top: 6rem;
+        }
+
+        .profile-card {
+            display: flex;
+            align-items: center;
+            gap: 3.5rem;
+            background: linear-gradient(135deg, rgba(20, 20, 20, 0.9) 0%, rgba(10, 10, 10, 0.95) 100%);
+            padding: 3rem;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .profile-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(0, 240, 255, 0.03) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .profile-avatar-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .avatar-ring {
+            position: relative;
+            width: 170px;
+            height: 170px;
+            border-radius: 50%;
+            padding: 4px;
+            background: linear-gradient(135deg, var(--accent-color), #7928ca);
+            box-shadow: 0 0 25px rgba(0, 240, 255, 0.25);
+        }
+
+        .profile-avatar {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            background-color: var(--bg-main);
+            display: block;
+        }
+
+        .status-badge {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: #00ff88;
+            background: rgba(0, 255, 136, 0.06);
+            padding: 0.4rem 1rem;
+            border-radius: 30px;
+            border: 1px solid rgba(0, 255, 136, 0.2);
+            letter-spacing: 0.5px;
+        }
+
+        .status-pulse {
+            width: 8px;
+            height: 8px;
+            background-color: #00ff88;
+            border-radius: 50%;
+            box-shadow: 0 0 0 rgba(0, 255, 136, 0.4);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(0, 255, 136, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(0, 255, 136, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(0, 255, 136, 0);
+            }
+        }
+
+        .profile-info {
+            flex-grow: 1;
+        }
+
+        .profile-subtitle {
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--accent-color);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .profile-name {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin: 0.2rem 0 0.8rem 0;
+            color: var(--text-primary);
+        }
+
+        .profile-bio {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            line-height: 1.7;
+            margin-bottom: 1.8rem;
+        }
+
+        .profile-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-bottom: 1.8rem;
+        }
+
+        .meta-card {
+            background: rgba(255, 255, 255, 0.02);
+            padding: 0.8rem 1rem;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .meta-label {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.2rem;
+        }
+
+        .meta-value {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .social-links-container {
+            display: flex;
+            gap: 0.8rem;
+            flex-wrap: wrap;
+        }
+
+        .social-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            color: var(--text-primary);
+            background: rgba(255, 255, 255, 0.04);
+            text-decoration: none;
+            font-size: 0.88rem;
+            font-weight: 500;
+            padding: 0.5rem 1.1rem;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+
+        .social-btn:hover {
+            background-color: var(--accent-color);
+            color: #000;
+            border-color: var(--accent-color);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 240, 255, 0.3);
+        }
+
+        /* ===================================
+           Projects Section
+           =================================== */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background-color: var(--bg-card);
+            padding: 2rem;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-color);
+        }
+
+        .project-card h3 {
+            margin-bottom: 0.8rem;
+        }
+
+        .project-card p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .tags {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 1.5rem;
+        }
+
+        .tags span {
+            background-color: #222;
+            color: var(--accent-color);
+            font-size: 0.8rem;
+            padding: 0.2rem 0.6rem;
+            border-radius: 4px;
+        }
+
+        .project-link {
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        /* ===================================
+           Skills Section
+           =================================== */
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .skill-badge {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            padding: 0.8rem 1.5rem;
+            border-radius: 20px;
+            font-weight: 500;
+        }
+
+        /* ===================================
+           Contact Section
+           =================================== */
+        .contact-section p {
+            text-align: center;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+        }
+
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 1rem;
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 5px;
+            color: var(--text-primary);
+            font-family: inherit;
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            outline: none;
+            border-color: var(--accent-color);
+        }
+
+        /* ===================================
+           Footer
+           =================================== */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-top: 4rem;
+        }
+
+        /* ===================================
+           Responsive Design (Media Queries)
+           =================================== */
+        @media (max-width: 850px) {
+            .navbar {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-content h2 {
+                font-size: 1.4rem;
+            }
+
+            .btn-group {
+                flex-direction: column;
+            }
+
+            section {
+                padding: 4rem 1.5rem 2rem 1.5rem;
+            }
+
+            .profile-card {
+                flex-direction: column;
+                text-align: center;
+                padding: 2rem 1.5rem;
+                gap: 2rem;
+            }
+
+            .profile-grid {
+                grid-template-columns: 1fr;
+                text-align: left;
+            }
+
+            .social-links-container {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header / Navigation -->
+    <header>
+        <nav class="navbar">
+            <a href="#" class="logo">Gen's <span>Portfolio</span></a>
+            <ul class="nav-links">
+                <li><a href="#profile">Profile</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Hi, I'm <span class="highlight">Mark Genesis Espejo</span></h1>
+            <h2>Developer</h2>
+            <p>I build sleek, responsive, and modern web applications with a passion for high-performance user experiences.</p>
+            <div class="btn-group">
+                <a href="#projects" class="btn primary-btn">View Projects</a>
+                <a href="#contact" class="btn secondary-btn">Contact Me</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Profile Section -->
+    <section id="profile" class="profile-section">
+        <h2>Developer Profile</h2>
+        <div class="profile-card">
+            
+            <!-- Left Side: Avatar & Availability -->
+            <div class="profile-avatar-wrapper">
+                <div class="avatar-ring">
+                    <!-- Replace src with your photo URL -->
+                    <img src="1234.jpg" alt="Profile Picture" class="profile-avatar">
+                </div>
+                <div class="status-badge">
+                    <span class="status-pulse"></span>
+                    <span>Open to Opportunities</span>
+                </div>
+            </div>
+            
+            <!-- Right Side: Details & Metadata -->
+            <div class="profile-info">
+                <span class="profile-subtitle">SOFTWARE ENGINEER</span>
+                <h3 class="profile-name">Mark Genesis Espejo</h3>
+                <p class="profile-bio">
+                    Specializing in building high-performance, accessible web apps. I combine modern front-end architectures with clean UI design to deliver exceptional digital experiences.
+                </p>
+
+                <div class="profile-grid">
+                    <div class="meta-card">
+                        <span class="meta-label">Location</span>
+                        <span class="meta-value">Bogtong Legazpi CIty</span>
+                    </div>
+                    <div class="meta-card">
+                        <span class="meta-label">Experience</span>
+                        <span class="meta-value">2+ Years</span>
+                    </div>
+                    
+                    <div class="meta-card">
+                        <span class="meta-label">Availability</span>
+                        <span class="meta-value">All the time</span>
+                    </div>
+                </div>
+
+                <div class="social-links-container">
+                    <a href="https://github.com" target="_blank" class="social-btn">
+                        <span>GitHub</span> &rarr;
+                    </a>
+                    <a href="https://linkedin.com" target="_blank" class="social-btn">
+                        <span>LinkedIn</span> &rarr;
+                    </a>
+                    <a href="https://facebook.com" target="_blank" class="social-btn">
+                        <span>Facebook</span> &rarr;
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects-section">
+        <h2>Featured Projects</h2>
+        <div class="projects-grid">
+            
+            <div class="project-card">
+                <h3>Basic Codes</h3>
+                <p>In this project, I built a collection of simple yet effective code examples for learning web development fundamentals.</p>
+                <div class="tags">
+                    <span>HTML</span>
+                    
+                </div>
+                <a href="codes.html" class="project-link">View Demo &rarr;</a>
+            </div>
+
+            
+
+            
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="skills-section">
+        <h2>Skills & Technologies</h2>
+        <div class="skills-container">
+            <div class="skill-badge">HTML</div>
+            <div class="skill-badge">CSS / SASS</div>
+            <div class="skill-badge">JavaScript (basic skills)</div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <h2>Get In Touch</h2>
+        <p>I am currently open to new opportunities, freelance projects, or collaborations.</p>
+        <form class="contact-form" onsubmit="event.preventDefault();">
+            <input type="text" placeholder="Your Name" required>
+            <input type="email" placeholder="Your Email" required>
+            <textarea placeholder="Your Message" rows="5" required></textarea>
+            <button type="submit" class="btn primary-btn">Send Message</button>
+        </form>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Mark Genesis Espejo. All Rights Reserved.</p>
+    </footer>
+
+</body>
+</html>

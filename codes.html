@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Document Metadata -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complete HTML Cheat Sheet & Reference</title>
+</head>
+<body>
+
+    <!-- 1. SEMANTIC HEADER -->
+    <header>
+        <h1>HTML5 Complete Reference Guide</h1>
+        <p>A structured breakdown of elements, attributes, and syntax basics.</p>
+
+        <!-- Navigation Bar -->
+        <nav>
+            <ul>
+                <li><a href="#basics">Document Structure</a></li>
+                <li><a href="#text">Text Elements</a></li>
+                <li><a href="#media">Media & Links</a></li>
+                <li><a href="#lists-tables">Lists & Tables</a></li>
+                <li><a href="#forms">Forms & Inputs</a></li>
+                <li><a href="#semantics">Semantic Layout</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <hr>
+
+    <main>
+
+        <!-- 2. DOCUMENT STRUCTURE -->
+        <section id="basics">
+            <h2>1. Core Document Anatomy</h2>
+            <p>Every standard HTML document requires this basic boilerplate:</p>
+            <pre>
+&lt;!DOCTYPE html&gt;             &lt;!-- Informs the browser that this is an HTML5 document --&gt;
+&lt;html lang="en"&gt;            &lt;!-- Root element with language attribute --&gt;
+  &lt;head&gt;                   &lt;!-- Contains non-visible metadata, scripts, and CSS links --&gt;
+    &lt;meta charset="UTF-8"&gt;  &lt;!-- Character encoding for international support --&gt;
+    &lt;title&gt;Page Title&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;                   &lt;!-- Contains all visible page content --&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+            </pre>
+        </section>
+
+        <!-- 3. TEXT & CONTENT FORMATTING -->
+        <section id="text">
+            <h2>2. Text Formatting Elements</h2>
+            
+            <!-- Headings -->
+            <h3>Headings (H1 to H6)</h3>
+            <h1>Heading 1 (Main Page Title)</h1>
+            <h2>Heading 2 (Major Section)</h2>
+            <h3>Heading 3 (Sub-section)</h3>
+
+            <!-- Paragraphs and Formatting -->
+            <h3>Paragraphs & Text Hierarchy</h3>
+            <p>This is a standard paragraph with <strong>bold/strong importance</strong>, <em>italic emphasis</em>, <mark>highlighted text</mark>, <del>deleted text</del>, and <code>inline code</code>.</p>
+            
+            <p>Line breaks are made with the <code>&lt;br&gt;</code> tag.<br>The horizontal rule above sections is created with <code>&lt;hr&gt;</code>.</p>
+
+            <!-- Blockquote -->
+            <blockquote>
+                "Semantic HTML provides meaning to web content, making it accessible to both users and web crawlers."
+            </blockquote>
+        </section>
+
+        <!-- 4. MEDIA AND LINKS -->
+        <section id="media">
+            <h2>3. Hyperlinks & Media</h2>
+
+            <!-- Links -->
+            <p>
+                <a href="https://developer.mozilla.org" target="_blank" rel="noopener">External Link (MDN)</a> | 
+                <a href="#basics">Internal Anchor Link (Jump to Top)</a>
+            </p>
+
+            <!-- Images -->
+            <figure>
+                <img src="https://via.placeholder.com/300x150" alt="Placeholder Image Example" width="300" height="150">
+                <figcaption>Figure caption describing the image above.</figcaption>
+            </figure>
+
+            <!-- Embedded Audio/Video -->
+            <h3>Native Audio & Video</h3>
+            <audio controls>
+                <source src="audio-example.mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+
+            <br><br>
+
+            <video width="320" height="240" controls poster="https://via.placeholder.com/320x240">
+                <source src="video-example.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </section>
+
+        <!-- 5. LISTS AND TABLES -->
+        <section id="lists-tables">
+            <h2>4. Lists & Data Tables</h2>
+
+            <h3>Unordered List (Bullet Points)</h3>
+            <ul>
+                <li>HTML5 Structure</li>
+                <li>CSS Styling</li>
+                <li>JavaScript Logic</li>
+            </ul>
+
+            <h3>Ordered List (Numbered)</h3>
+            <ol>
+                <li>Plan content structure</li>
+                <li>Write semantic markup</li>
+                <li>Style with CSS</li>
+            </ol>
+
+            <h3>Data Table</h3>
+            <table border="1" cellpadding="8" cellspacing="0">
+                <caption>HTML Element Categories</caption>
+                <thead>
+                    <tr>
+                        <th>Category</th>
+                        <th>Tag Examples</th>
+                        <th>Display Type</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Block Level</td>
+                        <td><code>&lt;div&gt;</code>, <code>&lt;p&gt;</code>, <code>&lt;h1&gt;</code></td>
+                        <td>Takes full width</td>
+                    </tr>
+                    <tr>
+                        <td>Inline Level</td>
+                        <td><code>&lt;span&gt;</code>, <code>&lt;a&gt;</code>, <code>&lt;strong&gt;</code></td>
+                        <td>Takes content width</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- 6. FORMS AND INPUTS -->
+        <section id="forms">
+            <h2>5. Forms & User Input</h2>
+
+            <form action="#" method="POST">
+                <fieldset>
+                    <legend>Contact Information</legend>
+
+                    <!-- Text Input -->
+                    <p>
+                        <label for="username">Full Name:</label><br>
+                        <input type="text" id="username" name="username" placeholder="John Doe" required>
+                    </p>
+
+                    <!-- Email Input -->
+                    <p>
+                        <label for="email">Email Address:</label><br>
+                        <input type="email" id="email" name="email" required>
+                    </p>
+
+                    <!-- Select Dropdown -->
+                    <p>
+                        <label for="role">Primary Role:</label><br>
+                        <select id="role" name="role">
+                            <option value="developer">Developer</option>
+                            <option value="designer">Designer</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </p>
+
+                    <!-- Radio Buttons -->
+                    <p>
+                        <label>Experience Level:</label><br>
+                        <input type="radio" id="beginner" name="experience" value="beginner">
+                        <label for="beginner">Beginner</label>
+                        <input type="radio" id="intermediate" name="experience" value="intermediate">
+                        <label for="intermediate">Intermediate</label>
+                    </p>
+
+                    <!-- Checkboxes -->
+                    <p>
+                        <input type="checkbox" id="terms" name="terms" required>
+                        <label for="terms">I accept the terms and conditions</label>
+                    </p>
+
+                    <!-- Textarea -->
+                    <p>
+                        <label for="message">Message:</label><br>
+                        <textarea id="message" name="message" rows="4" cols="40"></textarea>
+                    </p>
+
+                    <!-- Buttons -->
+                    <button type="submit">Submit Form</button>
+                    <button type="reset">Reset</button>
+                </fieldset>
+            </form>
+        </section>
+
+        <!-- 7. SEMANTIC STRUCTURAL ELEMENTS -->
+        <section id="semantics">
+            <h2>6. Key Semantic Elements Summary</h2>
+            <ul>
+                <li><strong>&lt;header&gt;:</strong> Introductory content or navigation bar.</li>
+                <li><strong>&lt;nav&gt;:</strong> Container for main navigation links.</li>
+                <li><strong>&lt;main&gt;:</strong> The central, non-repeating content of the page.</li>
+                <li><strong>&lt;section&gt;:</strong> Thematic grouping of content with a heading.</li>
+                <li><strong>&lt;article&gt;:</strong> Self-contained, reusable content (e.g., blog post).</li>
+                <li><strong>&lt;aside&gt;:</strong> Indirectly related side-content (e.g., sidebar).</li>
+                <li><strong>&lt;footer&gt;:</strong> Page or section footer (copyrights, links).</li>
+            </ul>
+        </section>
+
+    </main>
+
+    <hr>
+
+    <!-- 8. FOOTER -->
+    <footer>
+        <p>&copy; 2026 Web Development Quick Reference Guide. Built with pure HTML.</p>
+    </footer>
+
+</body>
+</html>
