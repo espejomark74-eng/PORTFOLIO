@@ -4,17 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="color-scheme" content="dark light">
-    <title>Mark Genesis Espejo | Web Developer Portfolio</title>
-    <meta name="description" content="Portfolio of Mark Genesis Espejo, a BSIT student in Legazpi City, Albay building clean, responsive websites.">
+    <title>Mark Genesis Espejo | Web Systems and Networking Portfolio</title>
+    <meta name="description" content="Portfolio of Mark Genesis Espejo, a BSIT student at CCDI Legazpi building web systems: a student voting system, a tuition payment and exam permit system, and network designs.">
     <meta name="author" content="Mark Genesis Espejo">
-    <meta property="og:title" content="Mark Genesis Espejo | Web Developer Portfolio">
-    <meta property="og:description" content="BSIT student building clean, responsive websites. View projects, skills, and contact details.">
+    <meta property="og:title" content="Mark Genesis Espejo | Web Systems and Networking Portfolio">
+    <meta property="og:description" content="BSIT student at CCDI Legazpi building web systems for school problems, plus network design in Packet Tracer.">
     <meta property="og:type" content="website">
     <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%230a0a0a'/%3E%3Ctext x='50' y='66' font-size='52' font-family='Arial' font-weight='700' text-anchor='middle' fill='%2300f0ff'%3EME%3C/text%3E%3C/svg%3E">
 
     <script>
         // Apply the saved theme before the page paints (avoids a flash of the wrong theme)
         (function () {
+            document.documentElement.classList.add('js');
             try {
                 var saved = localStorage.getItem('theme');
                 if (saved === 'light' || saved === 'dark') {
@@ -692,9 +693,152 @@
             html { scroll-behavior: auto; }
             * { transition: none !important; }
         }
+
+        /* ===================================
+           Custom layer: editorial layout
+           =================================== */
+        .eyebrow, .project-index, .skill-badge {
+            font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace;
+        }
+        .eyebrow {
+            color: var(--accent-color);
+            font-size: 0.82rem;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            margin-bottom: 0.6rem;
+        }
+        h2 { text-align: left; margin-bottom: 2rem; }
+        h2::after { margin-left: 0; }
+        .hero { text-align: left; justify-content: flex-start; }
+        .hero-content { border-left: 3px solid var(--accent-color); padding-left: 1.6rem; max-width: 780px; }
+        .hero-content .eyebrow { max-width: none; margin: 0 0 1rem 0; font-size: 0.85rem; color: var(--accent-color); }
+        .hero-content p { margin-left: 0; }
+        .hero-accent { color: var(--accent-color); }
+        .btn-group { justify-content: flex-start; }
+        .project-index { display: block; color: var(--text-secondary); font-size: 0.8rem; margin-bottom: 0.6rem; }
+        .skills-group { text-align: left; }
+        .skills-container { list-style: none; justify-content: flex-start; }
+        .skill-badge { border-radius: 6px; font-size: 0.88rem; }
+        .edu-meta { color: var(--accent-color) !important; font-weight: 500; margin-bottom: 0.6rem !important; flex-grow: 0 !important; }
+        .contact-section > p { text-align: left; margin: -0.8rem 0 2rem 0; max-width: 560px; }
+        .contact-form { margin: 0; }
+        .contact-section > p.contact-note { text-align: left; margin: 1.2rem 0 0 0; }
+        @media (max-width: 850px) {
+            .hero-content { padding-left: 1.1rem; }
+            .nav-links { flex-wrap: wrap; justify-content: center; gap: 0.4rem 1.2rem; }
+        }
+
+        /* ===================================
+           Falling code background
+           =================================== */
+        #codeRain {
+            position: fixed;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+            opacity: 0.3;
+        }
+        :root[data-theme="light"] #codeRain { opacity: 0.2; }
+        @media (prefers-color-scheme: light) {
+            :root:not([data-theme]) #codeRain { opacity: 0.2; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            #codeRain { display: none; }
+        }
+
+        /* ===================================
+           Scroll effects
+           =================================== */
+        .js .reveal {
+            opacity: 0;
+            transform: translateY(32px);
+            transition: opacity 0.7s ease, transform 0.7s ease, border-color 0.2s ease;
+            transition-delay: var(--delay, 0s), var(--delay, 0s), 0s;
+        }
+        .js .reveal.is-visible {
+            opacity: 1;
+            transform: none;
+        }
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--accent-color);
+            transform: scaleX(0);
+            transform-origin: left;
+            z-index: 1100;
+            pointer-events: none;
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .js .reveal { opacity: 1; transform: none; transition: none; }
+        }
+
+        /* ===================================
+           Desktop layout (wide screens)
+           =================================== */
+        .hero-visual { display: none; }
+
+        @media (min-width: 1100px) {
+            html { font-size: 17px; }
+
+            .navbar { max-width: 1240px; padding: 1.1rem 3rem; }
+            section { max-width: 1240px; padding: 7rem 3rem 2rem 3rem; }
+            h2 { font-size: 2.6rem; }
+
+            /* Hero: text on the left, large portrait on the right */
+            .hero { justify-content: space-between; gap: 4rem; }
+            .hero-content { flex: 1 1 0; max-width: 720px; }
+            .hero-content h1 { font-size: clamp(2.8rem, 4.2vw, 4.4rem); }
+            .hero-content p { max-width: 620px; }
+            .hero-visual { display: block; flex-shrink: 0; }
+            .hero-visual img {
+                display: block;
+                width: min(380px, 30vw);
+                height: auto;
+                aspect-ratio: 1;
+                object-fit: cover;
+                object-position: center 40%;
+                border-radius: 16px;
+                border: 1px solid var(--border-color);
+                box-shadow: 16px 16px 0 var(--tag-bg);
+            }
+
+            /* About */
+            .profile-card { gap: 4.5rem; padding: 3.5rem; }
+            .avatar-ring { width: 220px; height: 220px; }
+
+            /* Projects: two roomy columns */
+            .projects-grid { grid-template-columns: repeat(2, 1fr); gap: 2rem; }
+            .project-card { padding: 2.2rem; }
+
+            /* Skills: web and networking side by side */
+            #skills { display: grid; grid-template-columns: 1fr 1fr; column-gap: 3rem; }
+            #skills > .eyebrow, #skills > h2 { grid-column: 1 / -1; }
+
+            /* Contact: intro on the left, form on the right */
+            .contact-section { display: grid; grid-template-columns: 1fr 1.2fr; column-gap: 4rem; align-items: start; }
+            .contact-section > .eyebrow, .contact-section > h2 { grid-column: 1 / -1; }
+            .contact-section > p:not(.contact-note) { grid-column: 1; grid-row: 3; margin: 0 0 1rem 0; }
+            .contact-section > .contact-form { grid-column: 2; grid-row: 3 / span 3; max-width: none; }
+            .contact-section > p.contact-note { grid-column: 1; }
+        }
+
+        @media (min-width: 1600px) {
+            html { font-size: 18px; }
+            .navbar { max-width: 1440px; }
+            section { max-width: 1440px; }
+            .projects-grid { grid-template-columns: repeat(4, 1fr); }
+        }
     </style>
 </head>
 <body>
+
+    <canvas id="codeRain" aria-hidden="true"></canvas>
+    <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
 
     <a href="#main" class="skip-link">Skip to content</a>
 
@@ -703,9 +847,10 @@
         <nav class="navbar" aria-label="Main navigation">
             <a href="#top" class="logo">Mark Genesis <span>Espejo</span></a>
             <ul class="nav-links">
-                <li><a href="#profile">Profile</a></li>
+                <li><a href="#profile">About</a></li>
                 <li><a href="#projects">Projects</a></li>
                 <li><a href="#skills">Skills</a></li>
+                <li><a href="#education">Education</a></li>
                 <li><a href="#contact">Contact</a></li>
                 <li>
                     <button type="button" class="theme-toggle" id="themeToggle" aria-label="Switch to light mode" title="Switch theme">
@@ -720,21 +865,25 @@
     <main id="main">
 
         <!-- Hero Section -->
-        <section class="hero" id="top">
+        <section class="hero" id="top" aria-labelledby="hero-title">
             <div class="hero-content">
-                <h1>Mark Genesis Espejo</h1>
-                <p class="hero-role">Web Developer &amp; BSIT Student</p>
-                <p>I build clean, responsive websites and I'm growing my skills in web development and networking.</p>
+                <p class="eyebrow">Mark Genesis Espejo &middot; BSIT student &middot; Legazpi City</p>
+                <h1 id="hero-title">I build web systems for <span class="hero-accent">how a school actually runs.</span></h1>
+                <p>A student voting system, a tuition payment and exam permit system for my thesis, and a DHCP and VLAN network design. That is the work I would like to show you.</p>
                 <div class="btn-group">
-                    <a href="#projects" class="btn primary-btn">View projects</a>
-                    <a href="#contact" class="btn secondary-btn">Contact me</a>
+                    <a href="#projects" class="btn primary-btn">See my work</a>
+                    <a href="#contact" class="btn secondary-btn">Get in touch</a>
                 </div>
+            </div>
+            <div class="hero-visual" aria-hidden="true">
+                <img id="heroPhoto" alt="" width="380" height="380">
             </div>
         </section>
 
         <!-- Profile Section -->
-        <section id="profile">
-            <h2>About me</h2>
+        <section id="profile" aria-labelledby="about-title">
+            <p class="eyebrow">01 / About</p>
+            <h2 id="about-title">About me</h2>
             <div class="profile-card">
 
                 <div class="profile-avatar-wrapper">
@@ -753,7 +902,7 @@
                     <span class="profile-subtitle">Web Developer</span>
                     <h3 class="profile-name">Mark Genesis Espejo</h3>
                     <p class="profile-bio">
-                        I'm an Information Technology student who enjoys turning ideas into simple, well-structured web pages. I focus on clean layouts, readable code, and designs that work on both phones and computers.
+                        I'm an Information Technology student at CCDI Legazpi. I like building systems that solve everyday problems on campus, such as voting, tuition payments, and exam permits, and I'm learning how the network underneath them works.
                     </p>
 
                     <div class="profile-grid">
@@ -763,11 +912,11 @@
                         </div>
                         <div class="meta-card">
                             <span class="meta-label">Education</span>
-                            <span class="meta-value">BSIT Student</span>
+                            <span class="meta-value">BSIT, CCDI Legazpi</span>
                         </div>
                         <div class="meta-card">
                             <span class="meta-label">Focus</span>
-                            <span class="meta-value">Front-end web development</span>
+                            <span class="meta-value">Web systems and networking</span>
                         </div>
                         <div class="meta-card">
                             <span class="meta-label">Looking for</span>
@@ -776,10 +925,12 @@
                     </div>
 
                     <div class="social-links-container">
-                        <!-- Replace each link with your own profile URL -->
+                        <a href="https://www.facebook.com/genesis.espejo.35" target="_blank" rel="noopener noreferrer" class="social-btn">Facebook</a>
+                        <a href="mailto:espejomark74@gmail.com" class="social-btn">Email</a>
+                        <!-- Add your links here after you have your usernames:
                         <a href="https://github.com/YOUR-USERNAME" target="_blank" rel="noopener noreferrer" class="social-btn">GitHub</a>
                         <a href="https://linkedin.com/in/YOUR-USERNAME" target="_blank" rel="noopener noreferrer" class="social-btn">LinkedIn</a>
-                        <a href="https://www.facebook.com/genesis.espejo.35" target="_blank" rel="noopener noreferrer" class="social-btn">Facebook</a>
+                        -->
                     </div>
                 </div>
 
@@ -787,75 +938,82 @@
         </section>
 
         <!-- Projects Section -->
-        <section id="projects">
-            <h2>Projects</h2>
+        <section id="projects" aria-labelledby="projects-title">
+            <p class="eyebrow">02 / Projects</p>
+            <h2 id="projects-title">Selected work</h2>
             <div class="projects-grid">
 
                 <article class="project-card">
-                    <h3>Basic Codes</h3>
-                    <p>A collection of simple code examples I wrote while learning the fundamentals of web development.</p>
-                    <div class="tags">
-                        <span>HTML</span>
-                    </div>
-                    <a href="codes.html" class="project-link">View demo</a>
-                </article>
-
-                <article class="project-card">
+                    <span class="project-index" aria-hidden="true">01</span>
                     <h3>CCDI Voting System</h3>
-                    <p>A web app for student elections, with an admin panel for managing the voting process.</p>
-                    <div class="tags">
-                        <span>Web app</span>
-                        <span>Admin panel</span>
-                    </div>
+                    <p>A web-based student election system for CCDI, with an admin panel that handles the management side of the election.</p>
+                    <div class="tags"><span>Web app</span><span>Admin panel</span><span>Student elections</span></div>
                 </article>
 
                 <article class="project-card">
+                    <span class="project-index" aria-hidden="true">02</span>
                     <h3>Tuition Payment and Exam Permit System</h3>
-                    <p>My BSIT thesis: a web-based system for handling tuition payments and issuing exam permits.</p>
-                    <div class="tags">
-                        <span>Thesis</span>
-                        <span>Web app</span>
-                    </div>
+                    <p>My BSIT thesis: a web-based tuition fee payment system with automated exam permit issuance for CCDI Legazpi.</p>
+                    <div class="tags"><span>Thesis</span><span>Web app</span><span>Payments</span></div>
                 </article>
 
                 <article class="project-card">
+                    <span class="project-index" aria-hidden="true">03</span>
                     <h3>DHCP and VLAN Network Design</h3>
-                    <p>A network built and tested in Cisco Packet Tracer, with DHCP addressing and VLAN segmentation.</p>
-                    <div class="tags">
-                        <span>Networking</span>
-                        <span>Packet Tracer</span>
-                    </div>
+                    <p>A Networking 2 project built in Cisco Packet Tracer, using DHCP for automatic addressing and VLANs to segment the network.</p>
+                    <div class="tags"><span>Networking</span><span>Packet Tracer</span><span>DHCP</span><span>VLAN</span></div>
+                </article>
+
+                <article class="project-card">
+                    <span class="project-index" aria-hidden="true">04</span>
+                    <h3>Basic Codes</h3>
+                    <p>Small code examples I wrote while learning the fundamentals of web development.</p>
+                    <div class="tags"><span>HTML</span></div>
+                    <a href="codes.html" class="project-link">View demo</a>
                 </article>
 
             </div>
         </section>
 
         <!-- Skills Section -->
-        <section id="skills">
-            <h2>Skills</h2>
+        <section id="skills" aria-labelledby="skills-title">
+            <p class="eyebrow">03 / Skills</p>
+            <h2 id="skills-title">Skills</h2>
 
             <div class="skills-group">
                 <h3>Web development</h3>
-                <div class="skills-container">
-                    <div class="skill-badge">HTML</div>
-                    <div class="skill-badge">CSS / Sass</div>
-                    <div class="skill-badge">JavaScript (basic)</div>
-                </div>
+                <ul class="skills-container">
+                    <li class="skill-badge">HTML</li>
+                    <li class="skill-badge">CSS / Sass</li>
+                    <li class="skill-badge">JavaScript (basic)</li>
+                </ul>
             </div>
 
             <div class="skills-group">
                 <h3>Networking</h3>
-                <div class="skills-container">
-                    <div class="skill-badge">Cisco Packet Tracer</div>
-                    <div class="skill-badge">DHCP</div>
-                    <div class="skill-badge">VLAN</div>
-                </div>
+                <ul class="skills-container">
+                    <li class="skill-badge">Cisco Packet Tracer</li>
+                    <li class="skill-badge">DHCP</li>
+                    <li class="skill-badge">VLAN</li>
+                </ul>
             </div>
         </section>
 
+        <!-- Education Section -->
+        <section id="education" aria-labelledby="education-title">
+            <p class="eyebrow">04 / Education</p>
+            <h2 id="education-title">Education</h2>
+            <article class="project-card">
+                <h3>Bachelor of Science in Information Technology</h3>
+                <p class="edu-meta">Computer Communication Development Institute (CCDI), Legazpi &middot; Currently enrolled</p>
+                <p>Coursework includes web development and Networking 2. My thesis is a web-based tuition fee payment and automated exam permit issuance system for CCDI Legazpi.</p>
+            </article>
+        </section>
+
         <!-- Contact Section -->
-        <section id="contact" class="contact-section">
-            <h2>Contact</h2>
+        <section id="contact" class="contact-section" aria-labelledby="contact-title">
+            <p class="eyebrow">05 / Contact</p>
+            <h2 id="contact-title">Contact</h2>
             <p>I'm open to internships, entry-level roles, and collaborations. Send me a message and I'll reply as soon as I can.</p>
 
             <form class="contact-form" id="contactForm">
@@ -870,8 +1028,8 @@
 
                 <button type="submit" class="btn primary-btn">Send message</button>
             </form>
+            <p class="contact-note" id="formStatus" role="status" aria-live="polite"></p>
 
-            <!-- Replace YOUR-EMAIL@example.com with your real email in both places (here and in the script below) -->
             <p class="contact-note">Or email me directly at <a href="mailto:espejomark74@gmail.com">espejomark74@gmail.com</a></p>
         </section>
 
@@ -911,8 +1069,7 @@
         document.getElementById('year').textContent = new Date().getFullYear();
 
         // Contact form: opens the visitor's email app with the message filled in.
-        // Change this to your real email address.
-        var CONTACT_EMAIL = 'YOUR-EMAIL@example.com';
+        var CONTACT_EMAIL = 'espejomark74@gmail.com';
 
         document.getElementById('contactForm').addEventListener('submit', function (e) {
             e.preventDefault();
@@ -921,6 +1078,7 @@
             var message = document.getElementById('message').value.trim();
             var subject = 'Portfolio message from ' + name;
             var body = message + '\n\nFrom: ' + name + ' (' + email + ')';
+            document.getElementById('formStatus').textContent = 'Opening your email app...';
             window.location.href = 'mailto:' + CONTACT_EMAIL +
                 '?subject=' + encodeURIComponent(subject) +
                 '&body=' + encodeURIComponent(body);
@@ -945,6 +1103,122 @@
 
             sections.forEach(function (s) { if (s) observer.observe(s); });
         }
+    </script>
+
+
+    <script>
+        // Falling code background (skipped for visitors who prefer reduced motion)
+        (function () {
+            var canvas = document.getElementById('codeRain');
+            if (!canvas || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+            var ctx = canvas.getContext('2d');
+            if (!ctx) return;
+
+            var chars = '01{}<>/=;()[]$#&|+-*%'.split('');
+            var size = 16, w, h, drops = [], bg, fg, last = 0;
+
+            function readColors() {
+                var cs = getComputedStyle(document.documentElement);
+                bg = cs.getPropertyValue('--bg-main').trim() || '#0a0a0a';
+                fg = cs.getPropertyValue('--accent-color').trim() || '#00f0ff';
+            }
+
+            function resize() {
+                var dpr = window.devicePixelRatio || 1;
+                w = window.innerWidth;
+                h = window.innerHeight;
+                canvas.width = w * dpr;
+                canvas.height = h * dpr;
+                ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+                drops = [];
+                for (var i = 0; i < Math.ceil(w / size); i++) {
+                    drops[i] = -Math.random() * (h / size);
+                }
+                readColors();
+                ctx.globalAlpha = 1;
+                ctx.fillStyle = bg;
+                ctx.fillRect(0, 0, w, h);
+            }
+
+            function frame(t) {
+                if (t - last > 55) {
+                    last = t;
+                    ctx.globalAlpha = 0.12;
+                    ctx.fillStyle = bg;
+                    ctx.fillRect(0, 0, w, h);
+                    ctx.globalAlpha = 1;
+                    ctx.fillStyle = fg;
+                    ctx.font = size + 'px ui-monospace, Menlo, Consolas, monospace';
+                    for (var i = 0; i < drops.length; i++) {
+                        var ch = chars[Math.floor(Math.random() * chars.length)];
+                        ctx.fillText(ch, i * size, drops[i] * size);
+                        if (drops[i] * size > h && Math.random() > 0.975) drops[i] = 0;
+                        drops[i]++;
+                    }
+                }
+                requestAnimationFrame(frame);
+            }
+
+            var resizeTimer;
+            window.addEventListener('resize', function () {
+                clearTimeout(resizeTimer);
+                resizeTimer = setTimeout(resize, 150);
+            });
+
+            // Repaint with the new colors when the theme changes
+            new MutationObserver(resize).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+            window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', resize);
+
+            resize();
+            requestAnimationFrame(frame);
+        })();
+    </script>
+
+
+    <script>
+        // Scroll effects: sections fade and slide in as you scroll, plus a progress bar
+        (function () {
+            var items = [];
+            var avatar = document.querySelector('.profile-avatar');
+            var heroPhoto = document.getElementById('heroPhoto');
+            if (avatar && heroPhoto) heroPhoto.src = avatar.src;
+            document.querySelectorAll('main section').forEach(function (sec) {
+                var found = sec.classList.contains('hero')
+                    ? sec.querySelectorAll('.hero-content > *, .hero-visual')
+                    : sec.querySelectorAll(':scope > .eyebrow, :scope > h2, :scope > p, :scope > .profile-card, :scope > .projects-grid > *, :scope > .skills-group, :scope > article, :scope > form');
+                Array.prototype.forEach.call(found, function (el, i) {
+                    el.classList.add('reveal');
+                    el.style.setProperty('--delay', (Math.min(i, 4) * 0.08) + 's');
+                    items.push(el);
+                });
+            });
+
+            if ('IntersectionObserver' in window) {
+                var io = new IntersectionObserver(function (entries) {
+                    entries.forEach(function (entry) {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('is-visible');
+                            io.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
+                items.forEach(function (el) { io.observe(el); });
+            } else {
+                items.forEach(function (el) { el.classList.add('is-visible'); });
+            }
+
+            var bar = document.getElementById('scrollProgress');
+            var ticking = false;
+            function updateBar() {
+                var max = document.documentElement.scrollHeight - window.innerHeight;
+                bar.style.transform = 'scaleX(' + (max > 0 ? window.scrollY / max : 0) + ')';
+                ticking = false;
+            }
+            window.addEventListener('scroll', function () {
+                if (!ticking) { ticking = true; requestAnimationFrame(updateBar); }
+            }, { passive: true });
+            updateBar();
+        })();
     </script>
 
 </body>
