@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Pay Tuition – Computer Communication Development Institute</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f8f4ee;--surface:#fffdf9;--ink:#211d1b;--muted:#6b635d;--line:#e3dbd0;--accent:#8c1c2b;--accent-ink:#fff;--ok:#1f6b45;--err:#b3261e;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1b1715;--surface:#252120;--ink:#f2ece6;--muted:#a79d95;--line:#3a3431;--accent:#e0788a;--accent-ink:#1b1715;--ok:#6fcf9a;--err:#ff8a80}}
+:root[data-theme="dark"]{--bg:#1b1715;--surface:#252120;--ink:#f2ece6;--muted:#a79d95;--line:#3a3431;--accent:#e0788a;--accent-ink:#1b1715;--ok:#6fcf9a;--err:#ff8a80}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.55 "Instrument Sans",system-ui,-apple-system,"Segoe UI",sans-serif}
+button,input{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+header{background:var(--bg);border-bottom:1px solid var(--line)}
+.bar{max-width:1080px;margin:0 auto;padding:14px 20px;display:flex;align-items:center;gap:28px}
+.brand{font-weight:700;font-size:20px;line-height:1.1;white-space:nowrap}.brand small{display:block;font-weight:500;font-size:10.5px;color:var(--muted)}
+nav{display:flex;gap:4px;overflow-x:auto;flex:1}
+nav a{display:inline-flex;align-items:center;gap:6px;padding:8px 14px;text-decoration:none;color:var(--ink);font-weight:500;white-space:nowrap;border-radius:6px}
+nav a:hover{background:var(--line)}
+nav a.on{color:var(--accent)}
+nav svg{width:12px;height:12px;stroke:currentColor;fill:none;stroke-width:2}
+main{max-width:1080px;margin:0 auto;padding:44px 20px 72px;display:grid;grid-template-columns:1fr 340px;gap:40px;align-items:start}
+@media (max-width:820px){main{grid-template-columns:1fr;padding-top:28px}}
+h1{font-size:clamp(30px,5vw,44px);line-height:1.1;margin:0 0 10px;letter-spacing:-.02em}
+.lead{color:var(--muted);max-width:56ch;margin:0 0 28px}
+.steps{display:flex;gap:6px;margin:0 0 22px;padding:0;list-style:none;font-size:14px;color:var(--muted);flex-wrap:wrap}
+.steps li{padding:4px 12px;border:1px solid var(--line);border-radius:999px}
+.steps li.on{background:var(--accent);border-color:var(--accent);color:var(--accent-ink);font-weight:600}
+.steps li.done{color:var(--ink)}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:26px}
+.panel h2{margin:0 0 4px;font-size:22px}
+.panel p.sub{margin:0 0 20px;color:var(--muted)}
+label.f{display:block;font-weight:600;font-size:14px;margin:0 0 6px}
+input[type=text],input[type=number]{width:100%;padding:11px 13px;background:var(--bg);border:1px solid var(--line);border-radius:8px;margin-bottom:16px}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media (max-width:520px){.row{grid-template-columns:1fr}}
+.opt{display:flex;align-items:center;gap:12px;padding:13px 14px;border:1px solid var(--line);border-radius:8px;margin-bottom:10px;cursor:pointer;background:var(--bg)}
+.opt:has(input:checked){border-color:var(--accent);box-shadow:inset 0 0 0 1px var(--accent)}
+.opt input{accent-color:var(--accent);width:18px;height:18px}
+.opt .t{font-weight:600}.opt .d{color:var(--muted);font-size:14px}
+.opt .amt{margin-left:auto;font-weight:600;font-variant-numeric:tabular-nums}
+.btns{display:flex;gap:10px;margin-top:22px;flex-wrap:wrap}
+.btn{padding:12px 22px;border-radius:8px;border:1px solid var(--accent);background:var(--accent);color:var(--accent-ink);font-weight:600;cursor:pointer}
+.btn.ghost{background:transparent;color:var(--ink);border-color:var(--line)}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+.err{color:var(--err);font-size:14px;min-height:20px;margin:-6px 0 8px}
+dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:8px 18px}
+dt{color:var(--muted)}dd{margin:0;text-align:right;font-variant-numeric:tabular-nums}
+dl .tot{font-weight:700;font-size:18px}
+hr{border:0;border-top:1px solid var(--line);margin:16px 0}
+aside .panel{padding:22px}
+aside h3{margin:0 0 12px;font-size:16px}
+aside p{margin:0 0 12px;color:var(--muted);font-size:14px}
+.demo code{background:var(--bg);border:1px solid var(--line);border-radius:5px;padding:1px 6px;font-size:13px}
+.ok{display:flex;align-items:center;gap:12px;margin-bottom:6px}
+.ok .dot{width:38px;height:38px;border-radius:50%;background:var(--ok);display:grid;place-items:center}
+.ok svg{width:20px;height:20px;stroke:var(--bg);fill:none;stroke-width:3}
+.ref{font-weight:700;letter-spacing:.04em;font-variant-numeric:tabular-nums}
+.note{font-size:13px;color:var(--muted);margin-top:16px}
+.info{max-width:1080px;margin:0 auto;padding:0 20px 56px}
+.blk{display:grid;grid-template-columns:220px 1fr;gap:12px 40px;padding:32px 0;border-top:1px solid var(--line)}
+@media (max-width:720px){.blk{grid-template-columns:1fr}}
+.blk h2{margin:0;font-size:22px;letter-spacing:-.01em}
+.blk p{margin:0 0 12px;max-width:68ch}
+.blk ul{margin:0;padding-left:20px;max-width:68ch}.blk li{margin-bottom:6px}
+.campuses{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:18px 28px;margin-top:6px}
+.campuses b{display:block}.campuses span{color:var(--muted);font-size:14px}
+footer{border-top:1px solid var(--line);padding:22px 20px;text-align:center;color:var(--muted);font-size:14px}
+</style>
+</head>
+<body>
+<header><div class="bar">
+<div class="brand">CCDI<small>Computer Communication Development Institute</small></div>
+<nav aria-label="Main">
+<a href="#home">Home</a>
+<a href="#about">About <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4"/></svg></a>
+<a href="#updates">Updates <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4"/></svg></a>
+<a href="#admissions">Admissions <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4"/></svg></a>
+<a href="#academics">Academics <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4"/></svg></a>
+<a href="#services" class="on" aria-current="page">Services <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4"/></svg></a>
+</nav></div></header>
+
+<main>
+<section>
+<h1>Pay your tuition</h1>
+<p class="lead">Look up your account, choose how much to pay, and get a receipt right away. You can pay the full balance or a partial amount.</p>
+<ol class="steps" id="steps"></ol>
+<div class="panel" id="panel" aria-live="polite"></div>
+</section>
+<aside>
+<div class="panel demo">
+<h3>Try the demo</h3>
+<p>This is a practice version. No real money moves. Use one of these student numbers with the matching last name:</p>
+<p><code>2026-0101</code> Santos<br><code>2026-0102</code> Dela Cruz (fully paid)<br><code>2026-0103</code> Reyes</p>
+</div>
+</aside>
+</main>
+
+<div class="info">
+<section class="blk" id="about">
+<h2>About CCDI</h2>
+<div>
+<p>Computer Communication Development Institute (CCDI) is a specialized computer college. It is recognized by the Commission on Higher Education (CHED) and accredited by the Technical Education and Skills Development Authority (TESDA).</p>
+<p>The school is known for offering IT programs at affordable tuition fees to students across the Bicol Region.</p>
+</div>
+</section>
+
+<section class="blk" id="academics">
+<h2>Programs</h2>
+<ul>
+<li><b>College:</b> Bachelor of Science in Information Technology (BSIT)</li>
+<li><b>Senior High School:</b> CCDI takes part in the DepEd senior high school voucher program</li>
+<li><b>Technical-vocational (TESDA):</b> Computer Systems Servicing NC II</li>
+</ul>
+</section>
+
+<section class="blk" id="campuses">
+<h2>Campuses</h2>
+<div class="campuses">
+<div><b>Legazpi</b><span>Sikatuna St., Old Albay, Legazpi City</span></div>
+<div><b>Sorsogon City</b><span>Executive Village, Tugos, Sorsogon City</span></div>
+<div><b>Tabaco City</b><span>2/F Alfelor Bldg., Gen. A. Luna St., Tabaco City</span></div>
+<div><b>Naga City</b></div>
+<div><b>Iriga City</b></div>
+</div>
+</section>
+
+<section class="blk" id="updates">
+<h2>Updates</h2>
+<p>In 2023, students from CCDI Legazpi placed among the top teams in the regional HackForGov ethical hacking contest held in Bicol. One CCDI Legazpi student advanced to the national round as the wild card with the highest individual score.</p>
+</section>
+
+<section class="blk" id="contact">
+<h2>Contact the Legazpi campus</h2>
+<div>
+<p>Sikatuna St., Old Albay, Legazpi City<br>Telephone: (052) 742-1570</p>
+<p>For enrollment, assessment and payment questions, visit the cashier’s office.</p>
+</div>
+</section>
+</div>
+<footer>Computer Communication Development Institute · Legazpi Campus · Online tuition payment</footer>
+
+<script>
+const students={
+"2026-0101":{name:"Maria Santos",last:"santos",program:"BS Information Technology, 3rd Year",total:28500,paid:10000},
+"2026-0102":{name:"Juan Dela Cruz",last:"dela cruz",program:"BS Information Technology, 2nd Year",total:27000,paid:27000},
+"2026-0103":{name:"Angela Reyes",last:"reyes",program:"BS Computer Science, 1st Year",total:26500,paid:0}
+};
+const methods=[["GCash","Pay with your GCash wallet"],["Maya","Pay with your Maya wallet"],["Bank transfer","BDO, BPI, Landbank and others"],["Debit or credit card","Visa or Mastercard"]];
+const labels=["Find account","Amount","Method","Review","Receipt"];
+const peso=n=>"₱"+Number(n).toLocaleString("en-PH",{minimumFractionDigits:2,maximumFractionDigits:2});
+let S={step:0,sid:"",stu:null,amount:0,mode:"full",method:"GCash",ref:"",when:null};
+const $=id=>document.getElementById(id);
+const bal=()=>S.stu.total-S.stu.paid;
+
+function render(){
+ $("steps").innerHTML=labels.map((l,i)=>`<li class="${i===S.step?"on":i<S.step?"done":""}">${i+1}. ${l}</li>`).join("");
+ const p=$("panel");
+ if(S.step===0){
+  p.innerHTML=`<h2>Find your account</h2><p class="sub">Enter your student number and last name.</p>
+  <label class="f" for="sid">Student number</label><input id="sid" type="text" placeholder="2026-0101" value="${S.sid}" autocomplete="off">
+  <label class="f" for="ln">Last name</label><input id="ln" type="text" placeholder="Santos" autocomplete="off">
+  <div class="err" id="e"></div><div class="btns"><button class="btn" id="go">Find my account</button></div>`;
+  $("go").onclick=()=>{
+   const id=$("sid").value.trim(),ln=$("ln").value.trim().toLowerCase(),s=students[id];
+   if(!s||s.last!==ln){$("e").textContent="We couldn’t find that student number and last name. Check both and try again.";return}
+   S.sid=id;S.stu=s;S.step=1;S.mode=bal()>0?"full":"";S.amount=bal();render();
+  };
+ }
+ else if(S.step===1){
+  const b=bal();
+  if(b<=0){
+   p.innerHTML=`<h2>${S.stu.name}</h2><p class="sub">${S.stu.program}</p><dl><dt>Total fees</dt><dd>${peso(S.stu.total)}</dd><dt>Paid</dt><dd>${peso(S.stu.paid)}</dd><dt class="tot">Balance</dt><dd class="tot">${peso(0)}</dd></dl><hr><p>Your account is fully paid. Nothing is due.</p><div class="btns"><button class="btn ghost" id="back">Use another account</button></div>`;
+   $("back").onclick=()=>{S.step=0;render()};return;
+  }
+  p.innerHTML=`<h2>${S.stu.name}</h2><p class="sub">${S.stu.program}</p>
+  <dl><dt>Total fees</dt><dd>${peso(S.stu.total)}</dd><dt>Paid so far</dt><dd>${peso(S.stu.paid)}</dd><dt class="tot">Balance</dt><dd class="tot">${peso(b)}</dd></dl><hr>
+  <label class="opt"><input type="radio" name="m" value="full" ${S.mode==="full"?"checked":""}><span><span class="t">Full balance</span></span><span class="amt">${peso(b)}</span></label>
+  <label class="opt"><input type="radio" name="m" value="half" ${S.mode==="half"?"checked":""}><span><span class="t">Half of balance</span></span><span class="amt">${peso(Math.ceil(b/2))}</span></label>
+  <label class="opt"><input type="radio" name="m" value="custom" ${S.mode==="custom"?"checked":""}><span><span class="t">Another amount</span><br><span class="d">At least ₱500, up to your balance</span></span></label>
+  <input id="cu" type="number" min="500" max="${b}" step="0.01" placeholder="Enter amount in pesos" style="display:${S.mode==="custom"?"block":"none"}" value="${S.mode==="custom"&&S.amount?S.amount:""}">
+  <div class="err" id="e"></div><div class="btns"><button class="btn ghost" id="back">Back</button><button class="btn" id="next">Continue</button></div>`;
+  document.querySelectorAll("input[name=m]").forEach(r=>r.onchange=()=>{S.mode=r.value;$("cu").style.display=r.value==="custom"?"block":"none"});
+  $("back").onclick=()=>{S.step=0;render()};
+  $("next").onclick=()=>{
+   let a=S.mode==="full"?b:S.mode==="half"?Math.ceil(b/2):parseFloat($("cu").value);
+   if(!(a>=500&&a<=b)&&!(a===b)){$("e").textContent="Enter an amount from "+peso(Math.min(500,b))+" to "+peso(b)+".";return}
+   S.amount=Math.round(a*100)/100;S.step=2;render();
+  };
+ }
+ else if(S.step===2){
+  p.innerHTML=`<h2>Choose a payment method</h2><p class="sub">You’re paying ${peso(S.amount)}.</p>`+
+  methods.map(([n,d])=>`<label class="opt"><input type="radio" name="pm" value="${n}" ${S.method===n?"checked":""}><span><span class="t">${n}</span><br><span class="d">${d}</span></span></label>`).join("")+
+  `<div class="btns"><button class="btn ghost" id="back">Back</button><button class="btn" id="next">Continue</button></div>`;
+  document.querySelectorAll("input[name=pm]").forEach(r=>r.onchange=()=>S.method=r.value);
+  $("back").onclick=()=>{S.step=1;render()};$("next").onclick=()=>{S.step=3;render()};
+ }
+ else if(S.step===3){
+  p.innerHTML=`<h2>Review your payment</h2><p class="sub">Check the details before you pay.</p>
+  <dl><dt>Student</dt><dd>${S.stu.name}</dd><dt>Student number</dt><dd>${S.sid}</dd><dt>Method</dt><dd>${S.method}</dd><dt>Balance after payment</dt><dd>${peso(bal()-S.amount)}</dd></dl><hr>
+  <dl><dt class="tot">Amount to pay</dt><dd class="tot">${peso(S.amount)}</dd></dl>
+  <div class="btns"><button class="btn ghost" id="back">Back</button><button class="btn" id="pay">Pay ${peso(S.amount)}</button></div>
+  <p class="note">Demo only. No real payment is made.</p>`;
+  $("back").onclick=()=>{S.step=2;render()};
+  $("pay").onclick=()=>{
+   $("pay").disabled=true;$("pay").textContent="Processing payment";
+   setTimeout(()=>{
+    S.stu.paid+=S.amount;S.when=new Date();
+    S.ref="TP-"+Date.now().toString(36).toUpperCase().slice(-6)+Math.floor(Math.random()*90+10);
+    S.step=4;render();
+   },1100);
+  };
+ }
+ else{
+  p.innerHTML=`<div class="ok"><span class="dot"><svg viewBox="0 0 24 24"><path d="M5 12l5 5 9-10"/></svg></span><h2 style="margin:0">Payment received</h2></div>
+  <p class="sub">Keep this reference number for your records.</p>
+  <dl><dt>Reference</dt><dd class="ref">${S.ref}</dd><dt>Student</dt><dd>${S.stu.name}</dd><dt>Date</dt><dd>${S.when.toLocaleString("en-PH",{dateStyle:"medium",timeStyle:"short"})}</dd><dt>Method</dt><dd>${S.method}</dd></dl><hr>
+  <dl><dt class="tot">Amount paid</dt><dd class="tot">${peso(S.amount)}</dd><dt>Remaining balance</dt><dd>${peso(bal())}</dd></dl>
+  <div class="btns"><button class="btn" id="again">${bal()>0?"Pay the rest":"Done"}</button><button class="btn ghost" id="new">Use another account</button></div>`;
+  $("again").onclick=()=>{S.step=bal()>0?1:0;S.mode="full";S.amount=bal();if(bal()<=0)S.sid="";render()};
+  $("new").onclick=()=>{S.step=0;S.sid="";render()};
+ }
+}
+render();
+</script>
+</body>
+</html>
